@@ -1,6 +1,9 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const constant = require('./config/constant');
+
 module.exports = {
   mode: 'development',// 指定开发者打包模式
   devServer: { //node本地服务器
@@ -84,6 +87,9 @@ module.exports = {
       filename: 'index.html', // 打包后的文件名，默认是index.html
       template: path.resolve(__dirname, 'index.html') // 导入被打包的文件模板
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      CONSTANT: JSON.stringify(constant),
+    })
   ]
 };
