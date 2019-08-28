@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="App">
+        <div class="app">
             Hello {{msg}}
         </div>
 
@@ -25,3 +25,9 @@
     }
   };
 </script>
+
+<style lang="scss" scoped>
+    .app {
+        color: red;
+    }
+</style>

@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import page1 from '../page/page1.vue';
 import page2 from '../page/page2.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 export default new VueRouter({
   mode: 'hash',
   routes: [

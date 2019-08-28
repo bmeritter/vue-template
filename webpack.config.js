@@ -1,6 +1,6 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const HtmlWebpackplugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',// 指定开发者打包模式
   devServer: { //node本地服务器
@@ -43,10 +43,44 @@ module.exports = {
           }
         ]
       },
+      {
+        test: /\.(scss|sass)$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('dart-sass')
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                require("autoprefixer") /*自动添加前缀*/
+              ]
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10000
+          }
+        }]
+      }
     ]
   },
   plugins:[
-    new HtmlWebpackplugin({
+    new HtmlWebpackPlugin({
       filename: 'index.html', // 打包后的文件名，默认是index.html
       template: path.resolve(__dirname, 'index.html') // 导入被打包的文件模板
     }),
